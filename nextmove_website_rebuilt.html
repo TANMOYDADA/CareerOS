@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextMove — Make Your Next Move Count</title>
+  <meta name="description" content="NextMove helps ambitious professionals bypass broken hiring funnels through resume positioning, targeted outreach, interview preparation, and salary negotiation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --white:#ffffff;
+      --blue:#2563eb;
+      --blue-dark:#0f3ea8;
+      --navy:#0b1f3a;
+      --text:#24344d;
+      --muted:#64748b;
+      --soft:#f3f7ff;
+      --soft-2:#eaf1ff;
+      --line:#dbe5f5;
+      --shadow:0 24px 60px rgba(15,62,168,.10);
+      --maxw:1160px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Manrope',sans-serif;
+      background:var(--white);
+      color:var(--navy);
+      line-height:1.65;
+      font-size:16.5px;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.03em}
+    .logo-mark{width:34px;height:34px;border-radius:10px;background:var(--blue);display:grid;place-items:center;color:white;font-weight:800}
+    .logo span:last-child{color:var(--blue)}
+    .nav-links{display:flex;align-items:center;gap:30px}
+    .nav-links a:not(.btn){font-size:14px;font-weight:650;color:var(--muted)}
+    .nav-links a:hover{color:var(--blue)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:46px;padding:12px 20px;border-radius:999px;
+      font-size:14.5px;font-weight:800;transition:.2s ease;white-space:nowrap;
+    }
+    .btn-primary{background:var(--blue);color:white;box-shadow:0 14px 30px rgba(37,99,235,.22)}
+    .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+    .btn-secondary{background:white;color:var(--blue);border:1px solid var(--line)}
+    .btn-secondary:hover{border-color:var(--blue);transform:translateY(-2px)}
+    .menu{display:none;border:1px solid var(--line);background:white;border-radius:10px;width:42px;height:42px;font-size:22px;color:var(--navy)}
+
+    .hero{padding:106px 0 92px;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:var(--blue);font-size:13px;font-weight:800;margin-bottom:24px}
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    h1{font-size:clamp(46px,7vw,82px);line-height:.98;letter-spacing:-.065em;font-weight:800;max-width:11ch}
+    h1 strong{color:var(--blue)}
+    .sub{font-size:20px;color:var(--text);max-width:620px;margin-top:26px;line-height:1.65}
+    .sub b{color:var(--navy)}
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center}
+    .note{font-size:13.5px;color:var(--muted);margin-top:16px}
+
+    .hero-card{background:var(--soft);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow)}
+    .route-card{background:white;border:1px solid var(--line);border-radius:24px;padding:26px}
+    .route-title{font-size:14px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}
+    .route-step{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+    .route-step:first-of-type{border-top:0;padding-top:0}
+    .num{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--blue);color:white;display:grid;place-items:center;font-weight:800;font-size:13px}
+    .route-step h3{font-size:16px;line-height:1.25;margin-bottom:3px}
+    .route-step p{font-size:14px;color:var(--muted);line-height:1.5}
+
+    .stats{background:var(--soft);border-bottom:1px solid var(--line)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding:34px 28px}
+    .stat{background:white;border:1px solid var(--line);border-radius:20px;padding:22px}
+    .stat b{display:block;font-size:30px;letter-spacing:-.04em;color:var(--blue);line-height:1.1}
+    .stat span{font-size:14px;color:var(--muted)}
+
+    section{padding:98px 0}
+    .section-head{max-width:760px;margin-bottom:50px}
+    .kicker{color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    h2{font-size:clamp(32px,4.2vw,54px);line-height:1.08;letter-spacing:-.055em;font-weight:800}
+    .lead{font-size:18px;color:var(--muted);margin-top:18px;max-width:700px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:white;border:1px solid var(--line);border-radius:26px;padding:30px;transition:.2s ease}
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .card-icon{width:46px;height:46px;border-radius:15px;background:var(--soft);color:var(--blue);display:grid;place-items:center;font-weight:800;margin-bottom:22px}
+    .card h3{font-size:21px;letter-spacing:-.025em;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:15.5px}
+
+    .blue-band{background:var(--navy);color:white}
+    .blue-band .kicker,.blue-band h2{color:white}
+    .blue-band .lead{color:#cbd7ea}
+    .blue-band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+    .blue-band .card p{color:#cbd7ea}
+    .blue-band .card-icon{background:rgba(37,99,235,.22);color:white}
+
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+    .plan{background:white;border:1px solid var(--line);border-radius:30px;padding:32px;display:flex;flex-direction:column;position:relative}
+    .plan.featured{border:2px solid var(--blue);box-shadow:var(--shadow)}
+    .badge{position:absolute;top:22px;right:22px;background:var(--blue);color:white;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:800}
+    .plan h3{font-size:30px;letter-spacing:-.05em;margin-bottom:10px}
+    .plan-desc{color:var(--muted);font-size:15.5px;margin-bottom:24px;min-height:76px}
+    .plan ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:28px;flex:1}
+    .plan li{display:flex;gap:10px;font-size:15px;color:var(--text)}
+    .plan li::before{content:"✓";color:var(--blue);font-weight:800}
+
+    .final-cta{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+    .final-cta .section-head{margin:0 auto 30px}
+    .final-cta h2{max-width:720px;margin:0 auto}
+    .final-cta .lead{margin-left:auto;margin-right:auto}
+    .final-cta .cta-row{justify-content:center}
+
+    footer{padding:54px 0;background:white}
+    .footer-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+    .footer-brand p{color:var(--muted);max-width:360px;margin-top:12px;font-size:14px}
+    .footer-links{display:flex;gap:54px;flex-wrap:wrap}
+    .footer-links h4{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+    .footer-links a{display:block;color:var(--text);font-size:14px;margin:8px 0}
+    .footer-links a:hover{color:var(--blue)}
+    .copy{border-top:1px solid var(--line);margin-top:38px;padding-top:22px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:920px){
+      .hero-grid,.cards,.plans{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{padding:78px 0 70px}
+      section{padding:76px 0}
+    }
+    @media(max-width:680px){
+      .nav-links{position:fixed;top:72px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;background:white;border-bottom:1px solid var(--line);padding:18px 28px;box-shadow:0 20px 40px rgba(11,31,58,.08)}
+      .nav-links.open{display:flex}
+      .menu{display:block}
+      .nav-links .btn{width:100%}
+      .stats-grid{grid-template-columns:1fr}
+      .wrap{padding:0 20px}
+      .cta-row .btn{width:100%}
+      .hero-card{padding:18px;border-radius:22px}
+      .route-card{padding:20px;border-radius:20px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a href="#top" class="logo" aria-label="NextMove home"><span class="logo-mark">N</span><span>Next<span>Move</span></span></a>
+        <div class="nav-links" id="navlinks">
+          <a href="#method">Method</a>
+          <a href="#services">Services</a>
+          <a href="#programs">Programs</a>
+          <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call →</a>
+          <a href="https://wa.me/918697274881?text=Hi%20NextMove,%20I%20want%20help%20with%20my%20job%20search." target="_blank" rel="noopener" class="btn btn-secondary">Chat on WhatsApp</a>
+        </div>
+        <button class="menu" id="menuToggle" aria-label="Open menu">≡</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow reveal">Strategic career acceleration</div>
+          <h1 class="reveal">Make your <strong>next move</strong> count.</h1>
+          <p class="sub reveal">NextMove helps ambitious professionals bypass broken hiring funnels through sharp positioning, targeted outreach, interview preparation, and offer negotiation.</p>
+          <div class="cta-row reveal">
+            <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call →</a>
+            <a href="https://wa.me/918697274881?text=Hi%20NextMove,%20I%20want%20help%20with%20my%20job%20search." target="_blank" rel="noopener" class="btn btn-secondary">Chat on WhatsApp</a>
+          </div>
+          <p class="note reveal">For professionals who are done sending applications into the void.</p>
+        </div>
+        <div class="hero-card reveal">
+          <div class="route-card">
+            <div class="route-title">The NextMove route</div>
+            <div class="route-step"><div class="num">1</div><div><h3>Position</h3><p>Turn your experience into a sharp, recruiter-ready career narrative.</p></div></div>
+            <div class="route-step"><div class="num">2</div><div><h3>Target</h3><p>Build a focused company and role list based on your real aspiration.</p></div></div>
+            <div class="route-step"><div class="num">3</div><div><h3>Reach</h3><p>Use cold outreach to reach humans, not just job portals.</p></div></div>
+            <div class="route-step"><div class="num">4</div><div><h3>Convert</h3><p>Prepare for interviews and negotiate better before saying yes.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat reveal"><b>1:1</b><span>coaching and execution support</span></div>
+        <div class="stat reveal"><b>4–6</b><span>week flagship job-search sprint</span></div>
+        <div class="stat reveal"><b>3</b><span>mock interviews in the core program</span></div>
+        <div class="stat reveal"><b>360°</b><span>resume, outreach, prep and negotiation</span></div>
+      </div>
+    </div>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">The method</div>
+          <h2>Most candidates don’t need more applications. They need a better route.</h2>
+          <p class="lead">NextMove treats your job search like a go-to-market system: clear positioning, targeted accounts, decision-maker access, personalized outreach, interview readiness, and closing strategy.</p>
+        </div>
+        <div class="cards">
+          <div class="card reveal"><div class="card-icon">01</div><h3>Career positioning</h3><p>We translate your background into a clear narrative that recruiters and hiring managers can understand quickly.</p></div>
+          <div class="card reveal"><div class="card-icon">02</div><h3>Hidden market access</h3><p>We help you move beyond LinkedIn Easy Apply through company targeting, recruiter mapping, and executive-search outreach.</p></div>
+          <div class="card reveal"><div class="card-icon">03</div><h3>Offer conversion</h3><p>We prepare you for HR rounds, leadership conversations, salary discussions, and final negotiation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blue-band" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">What we help with</div>
+          <h2>From resume to recruiter replies — one connected job-search system.</h2>
+          <p class="lead">The goal is not just to look employable. The goal is to create momentum: better conversations, better interviews, and better offers.</p>
+        </div>
+        <div class="cards">
+          <div class="card reveal"><div class="card-icon">CV</div><h3>Resume & LinkedIn</h3><p>ATS-friendly resume, LinkedIn rewrite, profile positioning, achievement framing, and role-specific narratives.</p></div>
+          <div class="card reveal"><div class="card-icon">@</div><h3>Cold outreach</h3><p>Target companies, recruiter lists, executive-search contacts, cold email templates, and follow-up sequences.</p></div>
+          <div class="card reveal"><div class="card-icon">₹</div><h3>Interview & negotiation</h3><p>HR answers, mock interviews, compensation discussion, counter-offer strategy, and final offer decision support.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Programs</div>
+          <h2>Choose the level of support you need.</h2>
+          <p class="lead">Start with profile positioning or run the full route from search strategy to signed offer.</p>
+        </div>
+        <div class="plans">
+          <div class="plan reveal">
+            <h3>Profile Reset</h3>
+            <p class="plan-desc">For professionals who need a stronger resume, LinkedIn profile, and role narrative before applying.</p>
+            <ul>
+              <li>Resume rewrite</li>
+              <li>LinkedIn profile optimization</li>
+              <li>ATS-friendly formatting</li>
+              <li>Achievement and impact framing</li>
+            </ul>
+            <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener" class="btn btn-secondary">Book a Free Call →</a>
+          </div>
+          <div class="plan featured reveal">
+            <span class="badge">Flagship</span>
+            <h3>Offer Sprint</h3>
+            <p class="plan-desc">A complete 4–6 week guided job-search sprint from positioning to outreach, interviews, and negotiation.</p>
+            <ul>
+              <li>Resume + LinkedIn included</li>
+              <li>Target company list</li>
+              <li>Recruiter and executive-search mapping</li>
+              <li>Cold email campaign support</li>
+              <li>3 mock interviews</li>
+              <li>Salary negotiation coaching</li>
+            </ul>
+            <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call →</a>
+          </div>
+          <div class="plan reveal">
+            <h3>Career Add-ons</h3>
+            <p class="plan-desc">For candidates who need focused support in one part of the journey.</p>
+            <ul>
+              <li>Mock interview packs</li>
+              <li>HR question preparation</li>
+              <li>Cold email review</li>
+              <li>Salary negotiation session</li>
+            </ul>
+            <a href="https://wa.me/918697274881?text=Hi%20NextMove,%20I%20want%20help%20with%20my%20job%20search." target="_blank" rel="noopener" class="btn btn-secondary">Chat on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Start here</div>
+          <h2>Your next role should not depend on luck.</h2>
+          <p class="lead">Book a free call or message on WhatsApp. We’ll review your situation and suggest the right next step for your job search.</p>
+        </div>
+        <div class="cta-row">
+          <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Call →</a>
+          <a href="https://wa.me/918697274881?text=Hi%20NextMove,%20I%20want%20help%20with%20my%20job%20search." target="_blank" rel="noopener" class="btn btn-secondary">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#top" class="logo"><span class="logo-mark">N</span><span>Next<span>Move</span></span></a>
+          <p>Strategic career acceleration for ambitious professionals who want better interviews, better conversations, and better offers.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Explore</h4>
+            <a href="#method">Method</a>
+            <a href="#services">Services</a>
+            <a href="#programs">Programs</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="https://calendly.com/tanmoyadhikary1/exploratory-call" target="_blank" rel="noopener">Book a Free Call</a>
+            <a href="https://wa.me/918697274881?text=Hi%20NextMove,%20I%20want%20help%20with%20my%20job%20search." target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span>© <span id="year"></span> NextMove. All rights reserved.</span>
+        <span>Make your next move count.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menu = document.getElementById('menuToggle');
+    const nav = document.getElementById('navlinks');
+    menu.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    window.addEventListener('load',()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('in')));
+  </script>
+</body>
+</html>
